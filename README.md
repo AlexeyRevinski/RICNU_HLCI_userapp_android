@@ -1,0 +1,1 @@
+This repo contains an AndroidStudio project used in RICNU-Knee High-Level Control Interface project.
