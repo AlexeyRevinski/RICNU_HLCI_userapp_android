@@ -1,0 +1,130 @@
+<resources>
+
+    <!-- Log Strings -->
+    <string name="TAG_AP">AP</string>
+    <string name="TAG_BT">BT</string>
+    <string name="TAG_BU">BU</string>
+    <string name="TAG_IC">IC</string>
+    <string name="TAG_UI">UI</string>
+    <string name="TAG_XX">XX</string>
+    <string name="TAG_BS">BS</string>
+
+    <string name="log_ap_initial">Initializing BluetoothActivity&#8230;</string>
+    <string name="log_ap_scan">App phase changed to SCAN</string>
+    <string name="log_ap_connect">App phase changed to CONNECT</string>
+    <string name="log_ap_error">App phase changed to ERROR</string>
+    <string name="log_ap_waiting_to_scan">Waiting for user input to start scan&#8230;</string>
+    <string name="log_ap_waiting_to_connect">Waiting for user input to connect&#8230;</string>
+    <string name="log_ap_connected">App phase changed to CONNECTED</string>
+
+    <string name="log_bt_initial">Initializing Bluetooth functionality&#8230;</string>
+    <string name="log_bt_manager_not_found">Cannot find bluetooth MANAGER!</string>
+    <string name="log_bt_adapter_not_found">Cannot find bluetooth ADAPTER!</string>
+    <string name="log_bt_not_enabled">Bluetooth state detection: DISABLED!</string>
+    <string name="log_bt_enabled">Bluetooth state detection: ENABLED!</string>
+    <string name="log_bt_scan_start">Requesting BLE service to start scanning&#8230;</string>
+    <string name="log_bt_scan_stop">Requesting BLE service to stop scanning&#8230;</string>
+    <string name="log_bt_enable_request">Requesting user to enable Bluetooth&#8230;</string>
+    <string name="log_bt_scan_failed">Scan interrupted.</string>
+    <string name="log_bt_scan_finished">Scan finished successfully.</string>
+    <string name="log_bt_scan_stopped">User requested to stop scanning.</string>
+    <string name="log_bt_connect">User requested connection to a remote device.</string>
+    <string name="log_bt_gatt_connected">Received GATT connection status: SUCCESS</string>
+    <string name="log_bt_gatt_compatible">Device GATT is compatible.</string>
+    <string name="log_bt_gatt_incompatible">Device GATT is incompatible with this application.</string>
+
+    <string name="log_bu_initial">Initializing button&#8230;</string>
+    <string name="log_bu_checked">Button state set to CHECKED</string>
+    <string name="log_bu_unchecked">Button state set to UNCHECKED</string>
+    <string name="log_bu_toggle">Button changed to TOGGLE BUTTON</string>
+    <string name="log_bu_single_cancel">Button changed to SINGLE CANCEL</string>
+    <string name="log_bu_single_exit">Button changed to SINGLE EXIT</string>
+    <string name="log_bu_none">All buttons removed from the interface.</string>
+
+    <string name="log_ic_initial">Initializing status icon&#8230;</string>
+    <string name="log_ic_alert">Icon changed to ALERT</string>
+    <string name="log_ic_good">Icon changed to GOOD</string>
+    <string name="log_ic_progress">Icon changed to PROGRESS</string>
+
+    <string name="log_ui_initial">                  Initializing user interface&#8230;</string>
+    <string name="log_ui_bt_not_supported">         Changing user interface to BLUETOOTH NOT SUPPORTED</string>
+    <string name="log_ui_bt_not_enabled">           Changing user interface to BLUETOOTH NOT ENABLED</string>
+    <string name="log_ui_scan_ready">               Changing user interface to READY TO SCAN</string>
+    <string name="log_ui_scan_start">               Changing user interface to SCAN IN PROGRESS</string>
+    <string name="log_ui_scan_failed">              Changing user interface to SCAN FAILED</string>
+    <string name="log_ui_scan_finished">            Changing user interface to SCAN FINISHED</string>
+    <string name="log_ui_scan_finished_none_found"> Changing user interface to NONE FOUND</string>
+    <string name="log_ui_connect">                  Changing user interface to CONNECTING</string>
+    <string name="log_ui_connect_failed">           Changing user interface to FAILED TO CONNECT</string>
+    <string name="log_ui_connect_cancelled">        Changing user interface to CONNECT CANCELLED</string>
+    <string name="log_ui_connect_success">          Changing user interface to CONNECTED</string>
+    <string name="log_ui_incompatible">             Changing user interface to INCOMPATIBLE</string>
+
+    <string name="log_xx_on_destroy">BluetoothActivity: onDestroy running</string>
+    <string name="log_xx_bt_user_denied">User denied Bluetooth permission. Exiting&#8230;</string>
+    <string name="log_xx_device_found">Device found!</string>
+
+    <!-- Strings for app name/title -->
+    <string name="app_name">FlexSEA_Test_v1</string>
+    <string name="title_string">FlexSEA Test App v2</string>
+
+    <!-- State notification strings -->
+    <string name="state_initial">PLEASE SCAN FOR NEARBY DEVICES</string>
+    <string name="state_scan_finished_none_found">NO DEVICES FOUND</string>
+    <string name="state_scan_process">SCANNING&#8230; TAP ON DEVICE TO CONNECT</string>
+    <string name="state_scan_finished">TAP ON DEVICE TO CONNECT</string>
+    <string name="state_connect_process">CONNECTING TO</string>
+    <string name="state_connect_process_unknown_device">CONNECTING TO UNNAMED DEVICE</string>
+    <string name="state_connect_done">CONNECTED TO</string>
+    <string name="state_connect_done_unknown_device">CONNECTED TO UNNAMED DEVICE.</string>
+    <string name="state_connect_fail">CONNECTION FAILED. TRY AGAIN OR SCAN</string>
+    <string name="state_scan_interrupted">SCAN INTERRUPTED. PLEASE TRY AGAIN</string>
+    <string name="state_bt_not_supported">BLUETOOTH NOT SUPPORTED</string>
+    <string name="state_bt_not_enabled">BLUETOOTH NOT ENABLED</string>
+    <string name="state_disconnected">DISCONNECTED. SELECT TO CONNECT</string>
+    <string name="state_scan_ready">READY TO SCAN FOR NEARBY DEVICES</string>
+    <string name="state_incompatible">INCOMPATIBLE PROFILE.\nTAP ON ANOTHER DEVICE TO CONNECT</string>
+
+    <!-- Icon descriptors -->
+    <string name="icon_good">All is well icon</string>
+    <string name="icon_alert">Something is wrong icon</string>
+    <string name="icon_ablab">Made by AbilityLab in Chicago, IL</string>
+
+    <!-- Bluetooth-related dialog titles -->
+    <string name="dialog_BT_title_not_compatible">NOT COMPATIBLE</string>
+    <string name="dialog_BT_title_cannot_continue">ERROR</string>
+
+    <!-- Strings to use in case some device properties are unknown -->
+    <string name="list_item_no_name">UNKNOWN DEVICE</string>
+    <string name="list_item_no_address">--:--:--:--:--:--</string>
+
+    <!-- Bluetooth-related dialog content strings -->
+    <string name="dialog_BT_connect_to_device">Connect to</string>
+    <string name="dialog_BT_q_mark">\?</string>
+    <string name="dialog_BT_user_denied">Need Bluetooth to continue.</string>
+    <string name="dialog_BT_not_supported">Bluetooth not supported.</string>
+    <string name="dialog_BT_connect_to_unnamed_device">Unnamed device. Connect anyway\?</string>
+    <string name="dialog_BT_connected">Connected to</string>
+
+    <string name="dialog_BT_but_exit">Quit</string>
+    <string name="dialog_BT_but_connect">Connect</string>
+    <string name="dialog_BT_but_cancel">Cancel</string>
+    <string name="dialog_BT_but_scan_off">PRESS TO SCAN</string>
+    <string name="dialog_BT_but_scan_on">STOP SCANNING</string>
+    <string name="dialog_BT_but_scan_again">SCAN AGAIN</string>
+    <string name="dialog_BT_but_proceed">PROCEED</string>
+    <string name="dialog_BT_but_disconnect">DISCONNECT</string>
+
+    <string name="displaying_data">DISPLAYING DATA</string>
+
+    <string name="gx">Gyroscope X:</string>
+    <string name="gy">Gyroscope Y:</string>
+    <string name="gz">Gyroscope Z:</string>
+    <string name="ax">Accelerometer X:</string>
+    <string name="ay">Accelerometer Y:</string>
+    <string name="az">Accelerometer Z:</string>
+    <string name="em">Motor Encoder:</string>
+    <string name="ej">Joint Encoder:</string>
+    <string name="cu">Motor Current:</string>
+
+</resources>

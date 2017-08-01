@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.alexeyrevinski.myapplication.BluetoothActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:layout_editor_absoluteY="8dp"
+    tools:layout_editor_absoluteX="8dp">
+
+    <RelativeLayout
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:background="@color/colorTitleBar">
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:text="@string/title_string"
+            android:textColor="@color/colorTitleText"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+        <ImageView
+            android:id="@+id/abilityLab"
+            android:contentDescription="@string/icon_ablab"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="7dp"
+            app:srcCompat="@drawable/ability_lab"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/statusBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/status_bar_height"
+        android:layout_below="@id/titleBar"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:background="@color/colorPrimaryDark">
+        <RelativeLayout
+            android:id="@+id/statusBarIconSpace"
+            android:layout_width="@dimen/status_bar_height"
+            android:layout_height="match_parent">
+            <ProgressBar
+                android:id="@+id/icon_prog"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="invisible"/>
+
+            <ImageView
+                android:id="@+id/icon_alert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:adjustViewBounds="false"
+                android:background="@color/colorPrimaryDark"
+                android:contentDescription="@string/icon_alert"
+                android:cropToPadding="false"
+                android:visibility="visible"
+                app:srcCompat="?android:attr/alertDialogIcon" />
+
+            <ImageView
+                android:id="@+id/icon_good"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:adjustViewBounds="false"
+                android:contentDescription="@string/icon_good"
+                android:cropToPadding="false"
+                android:visibility="invisible"
+                app:srcCompat="?android:attr/textCheckMark"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/statusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/statusBarIconSpace"
+            android:layout_centerVertical="true"
+            android:text="@string/state_initial"
+            android:textColor="@color/colorText"/>
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/BTDeviceList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/statusBar"
+        android:layout_marginTop="25dp"
+        android:layout_above="@+id/toggleButton"
+        android:layout_marginBottom="35dp"
+        android:headerDividersEnabled="true"/>
+
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="35dp"
+        android:textOff="@string/dialog_BT_but_scan_off"
+        android:textOn="@string/dialog_BT_but_scan_on" />
+
+    <Button
+        android:id="@+id/singleButton"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="35dp"
+        android:visibility="invisible" />
+
+</RelativeLayout>
