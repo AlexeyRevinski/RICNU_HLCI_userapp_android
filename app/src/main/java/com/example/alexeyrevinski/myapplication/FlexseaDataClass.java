@@ -67,6 +67,10 @@ public class FlexseaDataClass {
     public boolean getData(byte [] data){
         int i = data.length-24;
         offset  = ((int)data[0])&0xFF;
+        if (i<0)
+        {
+            return false;
+        }
         gyroX = twosComplement((double)(((((int)data[i])&0xFF)<<8)|(((int)data[i+1]))&0xFF),16)/164;
         gyroY = twosComplement((double)(((((int)data[i+2])&0xFF)<<8)|(((int)data[i+3]))&0xFF),16)/164;
         gyroZ = twosComplement((double)(((((int)data[i+4])&0xFF)<<8)|(((int)data[i+5]))&0xFF),16)/164;

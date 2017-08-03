@@ -19,6 +19,16 @@ public class MonitorActivity extends AppCompatActivity {
 
     public final static String ACTION_ENABLE_NOTIFICATIONS = "com.example.alexeyrevinski.myapplication.ACTION_ENABLE_NOTIFICATIONS";
 
+    long end_time_display = 0;
+    long data_received_counter = 0;
+    double processing_time_max = 0;
+    double response_time_max = 0;
+    double notify_time_max = 0;
+    double processing_time_avg = 0;
+    double response_time_avg = 0;
+    double notify_time_avg = 0;
+    String timeString;
+
     //private Intent BTServiceIntent;
     //private ServiceConnection mServiceConnection;
     public FlexseaDataClass receivedData;
@@ -32,6 +42,9 @@ public class MonitorActivity extends AppCompatActivity {
     public TextView dataView_EM;
     public TextView dataView_EJ;
     public TextView dataView_CU;
+    public TextView timeText;
+    public TextView timeText2;
+    public TextView timeText3;
     private ToggleButton motorButton;
     private ToggleButton directButton;
 
@@ -55,6 +68,9 @@ public class MonitorActivity extends AppCompatActivity {
         dataView_EM = (TextView) findViewById(R.id.dataText_EM);
         dataView_EJ = (TextView) findViewById(R.id.dataText_EJ);
         dataView_CU = (TextView) findViewById(R.id.dataText_CU);
+        timeText = (TextView) findViewById(R.id.timeText);
+        timeText2 = (TextView) findViewById(R.id.timeText2);
+        timeText3 = (TextView) findViewById(R.id.timeText3);
         motorButton = (ToggleButton) findViewById(R.id.motorButton);
         directButton = (ToggleButton) findViewById(R.id.directButton);
         command = new RICNUCommander();
@@ -128,6 +144,15 @@ public class MonitorActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if(BluetoothLeService.ACTION_DATA_RECEIVED.equals(action)) {
+                data_received_counter++;
+                long ns = intent.getLongExtra("time",0);
+                double ms = ((double)ns)/1000000;
+                //response_time_avg = (response_time_avg+ms)/(data_received_counter);
+                //if (ms>response_time_max){
+                    response_time_max = ms;
+                    timeString = String.format(Locale.US,"%4.3f",ms)+" ms";
+                    timeText.setText(timeString);
+                //}
                 byte [] data = intent.getByteArrayExtra("data");
                 if(receivedData.getData(data)){
                     dataView_GX.setText(String.format(Locale.US,"%4.3f",receivedData.getGyroX()));
@@ -140,6 +165,24 @@ public class MonitorActivity extends AppCompatActivity {
                     dataView_EJ.setText(String.format(Locale.US,"%4.3f",receivedData.getEncJoint()));
                     dataView_CU.setText(String.format(Locale.US,"%4.3f",receivedData.getCurrent()));
                 }
+                end_time_display = System.nanoTime();
+                ns = intent.getLongExtra("start",0);
+                ms = ((double)end_time_display-(double)ns)/1000000;
+                //processing_time_avg = (processing_time_avg+ms)/(data_received_counter);
+                //if (ms>processing_time_max){
+                    processing_time_max = ms;
+                    timeString = String.format(Locale.US,"%4.3f",ms)+" ms";
+                    timeText2.setText(timeString);
+                //}
+
+                ns = intent.getLongExtra("notifications",0);
+                ms = ((double)ns)/1000000;
+                //notify_time_avg = (notify_time_avg+ms)/(data_received_counter);
+                //if (ms>notify_time_max){
+                    notify_time_max = ms;
+                    timeString = String.format(Locale.US,"%4.3f",ms)+" ms";
+                    timeText3.setText(timeString);
+                //}
             }
         }
     };

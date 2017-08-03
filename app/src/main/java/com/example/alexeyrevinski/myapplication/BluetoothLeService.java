@@ -39,6 +39,14 @@ public class BluetoothLeService extends Service {
     //==============================================================================================
     private static final long SCAN_PERIOD = 10000;
 
+    long prev_start_time;
+    long start_time;
+    long start_time_process;
+    long prev_notify_time = 0;
+    long time_notifications;
+    long end_time;
+    long notify_time;
+    long total_time;
 
     //==============================================================================================
     // OBJECTS
@@ -86,6 +94,7 @@ public class BluetoothLeService extends Service {
     public final static UUID  UUID_RICNU_FlxData  = UUID.fromString("a0d6b998-67ef-11e7-907b-a6006ad3dba0");
 
     public final static UUID  UUID_CCCD             = UUID.fromString("00002902-0000-1000-8000-00805f9b34fb");
+
 
     public final static int COMPAT_NUM = 9;
 
@@ -173,7 +182,10 @@ public class BluetoothLeService extends Service {
     private void broadcastUpdate(byte[] data){
         final Intent intent = new Intent();
         intent  .setAction(ACTION_DATA_RECEIVED)
-                .putExtra("data",data);
+                .putExtra("data",data)
+                .putExtra("time",total_time)
+                .putExtra("start",start_time_process)
+                .putExtra("notifications",time_notifications);
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
 
@@ -317,6 +329,16 @@ public class BluetoothLeService extends Service {
                 }
                 @Override
                 public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic){
+                    start_time_process = System.nanoTime();
+                    notify_time = System.nanoTime();
+                    if(prev_notify_time==0){prev_notify_time=notify_time;}
+                    if(start_time!=prev_start_time){
+                        end_time = notify_time;
+                        total_time = end_time-start_time;
+                        prev_start_time = start_time;
+                    }
+                    time_notifications = notify_time-prev_notify_time;
+                    prev_notify_time = notify_time;
                     if(characteristic.getUuid().equals(UUID_RICNU_FlxData)){
                         data = characteristic.getValue();
                         broadcastUpdate(data);
@@ -420,7 +442,7 @@ public class BluetoothLeService extends Service {
                 dataCharacteristic = mBluetoothGatt.getService(UUID_RICNU_FlxServ).getCharacteristic(UUID_RICNU_FlxData);
                 mBluetoothGatt.setCharacteristicNotification(dataCharacteristic, true);
                 clientConfigDescriptor = dataCharacteristic.getDescriptor(UUID_CCCD);
-                clientConfigDescriptor.setValue(BluetoothGattDescriptor.ENABLE_INDICATION_VALUE);
+                clientConfigDescriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
                 mBluetoothGatt.writeDescriptor(clientConfigDescriptor);
             }
 
@@ -428,6 +450,8 @@ public class BluetoothLeService extends Service {
                 Log.d("BS","Writing command!");
                 dataCharacteristic = mBluetoothGatt.getService(UUID_RICNU_FlxServ).getCharacteristic(UUID_RICNU_FlxData);
                 dataCharacteristic.setValue(intent.getByteArrayExtra("command"));
+                start_time = System.nanoTime();
+                dataCharacteristic.setWriteType(BluetoothGattCharacteristic.WRITE_TYPE_NO_RESPONSE);
                 mBluetoothGatt.writeCharacteristic(dataCharacteristic);
             }
         }

@@ -117,19 +117,26 @@
 
     <string name="displaying_data">DISPLAYING DATA</string>
 
-    <string name="gx">Gyroscope X:</string>
-    <string name="gy">Gyroscope Y:</string>
-    <string name="gz">Gyroscope Z:</string>
-    <string name="ax">Accelerometer X:</string>
-    <string name="ay">Accelerometer Y:</string>
-    <string name="az">Accelerometer Z:</string>
-    <string name="em">Motor Encoder:</string>
-    <string name="ej">Joint Encoder:</string>
-    <string name="cu">Motor Current:</string>
+    <string name="gx">Gyroscope X (dps):</string>
+    <string name="gy">Gyroscope Y (dps):</string>
+    <string name="gz">Gyroscope Z (dps):</string>
+    <string name="ax">Accelerometer X (g):</string>
+    <string name="ay">Accelerometer Y (g):</string>
+    <string name="az">Accelerometer Z (g):</string>
+    <string name="em">Motor Encoder (deg):</string>
+    <string name="ej">Joint Encoder (deg):</string>
+    <string name="cu">Motor Current (mA):</string>
 
     <string name="start_motor">START MOTOR</string>
     <string name="stop_motor">STOP MOTOR</string>
     <string name="CW">FORWARD</string>
     <string name="CCW">BACKWARD</string>
+
+    <string name="time_default">TIME</string>
+
+    <string name="res">RES:</string>
+    <string name="dis">DISP:</string>
+    <string name="not">NOT:</string>
+
 
 </resources>

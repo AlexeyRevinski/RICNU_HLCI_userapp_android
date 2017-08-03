@@ -92,6 +92,70 @@
             android:textColor="@color/colorText"
             android:text="@string/displaying_data"/>
 
+        <TextView
+            android:id="@+id/timeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/colorText"
+            android:text="@string/time_default"/>
+
+        <TextView
+            android:id="@+id/timeText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_centerVertical="true"
+            android:textColor="@color/colorText"
+            android:text="@string/time_default"/>
+
+        <TextView
+            android:id="@+id/timeText3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/colorText"
+            android:text="@string/time_default"/>
+
+        <TextView
+            android:id="@+id/timeText1_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="110dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/colorText"
+            android:text="@string/res"/>
+
+        <TextView
+            android:id="@+id/timeText2_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="110dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/colorText"
+            android:text="@string/dis"/>
+
+        <TextView
+            android:id="@+id/timeText3_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="110dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/colorText"
+            android:text="@string/not"/>
+
     </RelativeLayout>
 
     <TextView
