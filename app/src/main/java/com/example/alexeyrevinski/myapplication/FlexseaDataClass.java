@@ -4,7 +4,7 @@ package com.example.alexeyrevinski.myapplication;
  * Created by Alexey Revinski on 7/26/2017.
  */
 
-public class FlexseaDataStruct {
+public class FlexseaDataClass {
     private int offset;
     private double gyroX;
     private double gyroY;
@@ -51,7 +51,7 @@ public class FlexseaDataStruct {
     }
 
     // Constructor
-    public FlexseaDataStruct(){
+    public FlexseaDataClass(){
         gyroX = 0;
         gyroY = 0;
         gyroZ = 0;

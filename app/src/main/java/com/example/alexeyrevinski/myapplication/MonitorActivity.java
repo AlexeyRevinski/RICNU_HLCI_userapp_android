@@ -1,6 +1,5 @@
 package com.example.alexeyrevinski.myapplication;
 
-import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -10,17 +9,20 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import java.util.Locale;
 
 public class MonitorActivity extends AppCompatActivity {
 
-    public final static String ACTION_START_STREAM = "com.example.alexeyrevinski.myapplication.ACTION_START_STREAM";
+    public final static String ACTION_ENABLE_NOTIFICATIONS = "com.example.alexeyrevinski.myapplication.ACTION_ENABLE_NOTIFICATIONS";
 
     //private Intent BTServiceIntent;
     //private ServiceConnection mServiceConnection;
-    public FlexseaDataStruct receivedData;
+    public FlexseaDataClass receivedData;
+    public RICNUCommander command;
     public TextView dataView_GX;
     public TextView dataView_GY;
     public TextView dataView_GZ;
@@ -30,6 +32,8 @@ public class MonitorActivity extends AppCompatActivity {
     public TextView dataView_EM;
     public TextView dataView_EJ;
     public TextView dataView_CU;
+    private ToggleButton motorButton;
+    private ToggleButton directButton;
 
     //private BluetoothLeService mBluetoothService;
 
@@ -41,7 +45,7 @@ public class MonitorActivity extends AppCompatActivity {
         IntentFilter mIntentFilter = new IntentFilter();
         mIntentFilter.addAction(BluetoothLeService.ACTION_DATA_RECEIVED);
         LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, mIntentFilter);
-        receivedData = new FlexseaDataStruct();
+        receivedData = new FlexseaDataClass();
         dataView_GX = (TextView) findViewById(R.id.dataText_GX);
         dataView_GY = (TextView) findViewById(R.id.dataText_GY);
         dataView_GZ = (TextView) findViewById(R.id.dataText_GZ);
@@ -51,9 +55,42 @@ public class MonitorActivity extends AppCompatActivity {
         dataView_EM = (TextView) findViewById(R.id.dataText_EM);
         dataView_EJ = (TextView) findViewById(R.id.dataText_EJ);
         dataView_CU = (TextView) findViewById(R.id.dataText_CU);
+        motorButton = (ToggleButton) findViewById(R.id.motorButton);
+        directButton = (ToggleButton) findViewById(R.id.directButton);
+        command = new RICNUCommander();
 
-        broadcastUpdate(ACTION_START_STREAM);
+        //------------------------------------------------------------------------------------------
+        // BUTTON LISTENERS
+        //------------------------------------------------------------------------------------------
+        // Motor button listener
+        motorButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
+                if (motorButton.isChecked()) { // If button is checked
+                    sendBroadcast(command.setCommandIntent(RICNUCommander.commands.MOTOR_START));
+                }
+                else{
+                    sendBroadcast(command.setCommandIntent(RICNUCommander.commands.MOTOR_STOP));
+                }
+            }
+        });
+        // Direction button listener
+        directButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                if (directButton.isChecked()) { // If button is checked
+                    sendBroadcast(command.setCommandIntent(RICNUCommander.commands.DIRECTION_BACKWARD));
+                }
+                else{
+                    sendBroadcast(command.setCommandIntent(RICNUCommander.commands.DIRECTION_FORWARD));
+                }
+            }
+        });
+
+
+        broadcastUpdate(ACTION_ENABLE_NOTIFICATIONS);
     }
 
     public void     onDestroy() {

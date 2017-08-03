@@ -7,4 +7,6 @@
     <dimen name="list_padding">10dp</dimen>
     <dimen name="button_width">175dp</dimen>
     <dimen name="button_height">55dp</dimen>
+    <dimen name="two_buttons_inline_width">130dp</dimen>
+    <dimen name="text_size">15sp</dimen>
 </resources>

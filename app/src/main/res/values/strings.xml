@@ -127,4 +127,9 @@
     <string name="ej">Joint Encoder:</string>
     <string name="cu">Motor Current:</string>
 
+    <string name="start_motor">START MOTOR</string>
+    <string name="stop_motor">STOP MOTOR</string>
+    <string name="CW">FORWARD</string>
+    <string name="CCW">BACKWARD</string>
+
 </resources>

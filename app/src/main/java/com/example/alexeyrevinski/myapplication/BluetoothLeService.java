@@ -146,7 +146,8 @@ public class BluetoothLeService extends Service {
         mIntentFilter.addAction(BluetoothActivity.ACTION_START_SCAN);
         mIntentFilter.addAction(BluetoothActivity.ACTION_STOP_SCAN);
         mIntentFilter.addAction(BluetoothActivity.ACTION_CONNECT);
-        mIntentFilter.addAction(MonitorActivity.ACTION_START_STREAM);
+        mIntentFilter.addAction(MonitorActivity.ACTION_ENABLE_NOTIFICATIONS);
+        mIntentFilter.addAction(RICNUCommander.ACTION_WRITE_COMMAND);
         this.registerReceiver(mReceiver, mIntentFilter);
         mHandler = new Handler();
         Log.d(getString(R.string.TAG_BS), "Service created");
@@ -318,8 +319,6 @@ public class BluetoothLeService extends Service {
                 public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic){
                     if(characteristic.getUuid().equals(UUID_RICNU_FlxData)){
                         data = characteristic.getValue();
-                        characteristic.setValue(data);
-                        mBluetoothGatt.writeCharacteristic(characteristic);
                         broadcastUpdate(data);
                     }
                 }
@@ -416,13 +415,20 @@ public class BluetoothLeService extends Service {
                 }
             }
 
-            else if (MonitorActivity.ACTION_START_STREAM.equals(action)) {
+            else if (MonitorActivity.ACTION_ENABLE_NOTIFICATIONS.equals(action)) {
                 Log.d("BS","Received request to start data stream. Initiating stream...");
                 dataCharacteristic = mBluetoothGatt.getService(UUID_RICNU_FlxServ).getCharacteristic(UUID_RICNU_FlxData);
                 mBluetoothGatt.setCharacteristicNotification(dataCharacteristic, true);
                 clientConfigDescriptor = dataCharacteristic.getDescriptor(UUID_CCCD);
                 clientConfigDescriptor.setValue(BluetoothGattDescriptor.ENABLE_INDICATION_VALUE);
                 mBluetoothGatt.writeDescriptor(clientConfigDescriptor);
+            }
+
+            else if (RICNUCommander.ACTION_WRITE_COMMAND.equals(action)){
+                Log.d("BS","Writing command!");
+                dataCharacteristic = mBluetoothGatt.getService(UUID_RICNU_FlxServ).getCharacteristic(UUID_RICNU_FlxData);
+                dataCharacteristic.setValue(intent.getByteArrayExtra("command"));
+                mBluetoothGatt.writeCharacteristic(dataCharacteristic);
             }
         }
     };

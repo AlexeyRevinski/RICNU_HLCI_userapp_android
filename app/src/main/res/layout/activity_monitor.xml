@@ -102,7 +102,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:text="@string/gx"
-        android:textSize="20sp"/>
+        android:textSize="@dimen/text_size"/>
     <TextView
         android:id="@+id/dataText_GY_text"
         android:layout_width="wrap_content"
@@ -111,7 +111,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:text="@string/gy"
-        android:textSize="20sp"/>
+        android:textSize="@dimen/text_size"/>
     <TextView
         android:id="@+id/dataText_GZ_text"
         android:layout_width="wrap_content"
@@ -120,7 +120,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:text="@string/gz"
-        android:textSize="20sp"/>
+        android:textSize="@dimen/text_size"/>
     <TextView
         android:id="@+id/dataText_AX_text"
         android:layout_width="wrap_content"
@@ -129,7 +129,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:text="@string/ax"
-        android:textSize="20sp"/>
+        android:textSize="@dimen/text_size"/>
     <TextView
         android:id="@+id/dataText_AY_text"
         android:layout_width="wrap_content"
@@ -138,7 +138,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:text="@string/ay"
-        android:textSize="20sp"/>
+        android:textSize="@dimen/text_size"/>
     <TextView
         android:id="@+id/dataText_AZ_text"
         android:layout_width="wrap_content"
@@ -147,7 +147,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:text="@string/az"
-        android:textSize="20sp"/>
+        android:textSize="@dimen/text_size"/>
     <TextView
         android:id="@+id/dataText_EM_text"
         android:layout_width="wrap_content"
@@ -156,7 +156,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:text="@string/em"
-        android:textSize="20sp"/>
+        android:textSize="@dimen/text_size"/>
     <TextView
         android:id="@+id/dataText_EJ_text"
         android:layout_width="wrap_content"
@@ -165,7 +165,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:text="@string/ej"
-        android:textSize="20sp"/>
+        android:textSize="@dimen/text_size"/>
     <TextView
         android:id="@+id/dataText_CU_text"
         android:layout_width="wrap_content"
@@ -174,7 +174,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:text="@string/cu"
-        android:textSize="20sp"/>
+        android:textSize="@dimen/text_size"/>
 
 
     <TextView
@@ -185,7 +185,7 @@
         android:layout_marginTop="15dp"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:textSize="20sp"/>
+        android:textSize="@dimen/text_size"/>
     <TextView
         android:id="@+id/dataText_GY"
         android:layout_width="wrap_content"
@@ -194,7 +194,7 @@
         android:layout_marginTop="15dp"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:textSize="20sp"/>
+        android:textSize="@dimen/text_size"/>
     <TextView
         android:id="@+id/dataText_GZ"
         android:layout_width="wrap_content"
@@ -203,7 +203,7 @@
         android:layout_marginTop="15dp"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:textSize="20sp"/>
+        android:textSize="@dimen/text_size"/>
     <TextView
         android:id="@+id/dataText_AX"
         android:layout_width="wrap_content"
@@ -212,7 +212,7 @@
         android:layout_marginTop="15dp"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:textSize="20sp"/>
+        android:textSize="@dimen/text_size"/>
     <TextView
         android:id="@+id/dataText_AY"
         android:layout_width="wrap_content"
@@ -221,7 +221,7 @@
         android:layout_marginTop="15dp"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:textSize="20sp"/>
+        android:textSize="@dimen/text_size"/>
     <TextView
         android:id="@+id/dataText_AZ"
         android:layout_width="wrap_content"
@@ -230,7 +230,7 @@
         android:layout_marginTop="15dp"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:textSize="20sp"/>
+        android:textSize="@dimen/text_size"/>
     <TextView
         android:id="@+id/dataText_EM"
         android:layout_width="wrap_content"
@@ -239,7 +239,7 @@
         android:layout_marginTop="15dp"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:textSize="20sp"/>
+        android:textSize="@dimen/text_size"/>
     <TextView
         android:id="@+id/dataText_EJ"
         android:layout_width="wrap_content"
@@ -248,7 +248,7 @@
         android:layout_marginTop="15dp"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:textSize="20sp"/>
+        android:textSize="@dimen/text_size"/>
     <TextView
         android:id="@+id/dataText_CU"
         android:layout_width="wrap_content"
@@ -257,30 +257,34 @@
         android:layout_marginTop="15dp"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:textSize="20sp"/>
-
+        android:textSize="@dimen/text_size"/>
 
 
 
 
     <ToggleButton
-        android:id="@+id/toggleButton"
-        android:layout_width="@dimen/button_width"
+        android:id="@+id/directButton"
+        android:layout_width="@dimen/two_buttons_inline_width"
         android:layout_height="@dimen/button_height"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentStart="true"
         android:layout_marginBottom="35dp"
-        android:textOff="@string/dialog_BT_but_scan_off"
-        android:textOn="@string/dialog_BT_but_scan_on"
-        android:visibility="invisible" />
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:textOff="@string/CW"
+        android:textOn="@string/CCW"
+        android:visibility="visible" />
 
-    <Button
-        android:id="@+id/singleButton"
-        android:layout_width="@dimen/button_width"
+    <ToggleButton
+        android:id="@+id/motorButton"
+        android:layout_width="@dimen/two_buttons_inline_width"
         android:layout_height="@dimen/button_height"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginBottom="35dp"
-        android:visibility="invisible" />
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:textOff="@string/start_motor"
+        android:textOn="@string/stop_motor"
+        android:visibility="visible" />
+
 
 </RelativeLayout>
