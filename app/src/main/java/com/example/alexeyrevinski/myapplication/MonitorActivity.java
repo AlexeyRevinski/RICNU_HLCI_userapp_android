@@ -42,6 +42,12 @@ public class MonitorActivity extends AppCompatActivity {
     public TextView dataView_EM;
     public TextView dataView_EJ;
     public TextView dataView_CU;
+    public TextView dataView_FX;
+    public TextView dataView_FY;
+    public TextView dataView_FZ;
+    public TextView dataView_MX;
+    public TextView dataView_MY;
+    public TextView dataView_MZ;
     public TextView timeText;
     public TextView timeText2;
     public TextView timeText3;
@@ -68,6 +74,12 @@ public class MonitorActivity extends AppCompatActivity {
         dataView_EM = (TextView) findViewById(R.id.dataText_EM);
         dataView_EJ = (TextView) findViewById(R.id.dataText_EJ);
         dataView_CU = (TextView) findViewById(R.id.dataText_CU);
+        dataView_FX = (TextView) findViewById(R.id.dataText_FX);
+        dataView_FY = (TextView) findViewById(R.id.dataText_FY);
+        dataView_FZ = (TextView) findViewById(R.id.dataText_FZ);
+        dataView_MX = (TextView) findViewById(R.id.dataText_MX);
+        dataView_MY = (TextView) findViewById(R.id.dataText_MY);
+        dataView_MZ = (TextView) findViewById(R.id.dataText_MZ);
         timeText = (TextView) findViewById(R.id.timeText);
         timeText2 = (TextView) findViewById(R.id.timeText2);
         timeText3 = (TextView) findViewById(R.id.timeText3);
@@ -155,15 +167,21 @@ public class MonitorActivity extends AppCompatActivity {
                 //}
                 byte [] data = intent.getByteArrayExtra("data");
                 if(receivedData.getData(data)){
-                    dataView_GX.setText(String.format(Locale.US,"%4.3f",receivedData.getGyroX()));
-                    dataView_GY.setText(String.format(Locale.US,"%4.3f",receivedData.getGyroY()));
-                    dataView_GZ.setText(String.format(Locale.US,"%4.3f",receivedData.getGyroZ()));
-                    dataView_AX.setText(String.format(Locale.US,"%4.3f",receivedData.getAccelX()));
-                    dataView_AY.setText(String.format(Locale.US,"%4.3f",receivedData.getAccelY()));
-                    dataView_AZ.setText(String.format(Locale.US,"%4.3f",receivedData.getAccelZ()));
-                    dataView_EM.setText(String.format(Locale.US,"%4.3f",receivedData.getEncMotor()));
-                    dataView_EJ.setText(String.format(Locale.US,"%4.3f",receivedData.getEncJoint()));
-                    dataView_CU.setText(String.format(Locale.US,"%4.3f",receivedData.getCurrent()));
+                    dataView_GX.setText(String.format(Locale.US,"%4.2f",receivedData.getGX()));
+                    dataView_GY.setText(String.format(Locale.US,"%4.2f",receivedData.getGY()));
+                    dataView_GZ.setText(String.format(Locale.US,"%4.2f",receivedData.getGZ()));
+                    dataView_AX.setText(String.format(Locale.US,"%4.2f",receivedData.getAX()));
+                    dataView_AY.setText(String.format(Locale.US,"%4.2f",receivedData.getAY()));
+                    dataView_AZ.setText(String.format(Locale.US,"%4.2f",receivedData.getAZ()));
+                    dataView_EM.setText(String.format(Locale.US,"%4.2f",receivedData.getEM()));
+                    dataView_EJ.setText(String.format(Locale.US,"%4.2f",receivedData.getEJ()));
+                    dataView_CU.setText(String.format(Locale.US,"%4.2f",receivedData.getCU()));
+                    dataView_FX.setText(String.format(Locale.US,"%4.2f",receivedData.getFX()));
+                    dataView_FY.setText(String.format(Locale.US,"%4.2f",receivedData.getFY()));
+                    dataView_FZ.setText(String.format(Locale.US,"%4.2f",receivedData.getFZ()));
+                    dataView_MX.setText(String.format(Locale.US,"%4.2f",receivedData.getMX()));
+                    dataView_MY.setText(String.format(Locale.US,"%4.2f",receivedData.getMY()));
+                    dataView_MZ.setText(String.format(Locale.US,"%4.2f",receivedData.getMZ()));
                 }
                 end_time_display = System.nanoTime();
                 ns = intent.getLongExtra("start",0);
