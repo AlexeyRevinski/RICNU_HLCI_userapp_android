@@ -95,7 +95,8 @@ public class FlexseaDataClass {
     public boolean getData(byte [] data){
         int i = data.length-24;
         offset  = ((int)data[0])&0xFF;
-        if (i<0)
+        //if (!(offset==0||offset==1)){return false;}
+        if (data.length!=25)
         {
             return false;
         }
