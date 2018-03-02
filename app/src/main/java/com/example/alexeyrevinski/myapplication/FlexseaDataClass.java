@@ -101,6 +101,7 @@ public class FlexseaDataClass {
             return false;
         }
         if(offset==0) {
+
             gyroX = twosComplement((double) (((((int) data[i]) & 0xFF) << 8) | (((int) data[i + 1])) & 0xFF), 16) / 164;
             gyroY = twosComplement((double) (((((int) data[i + 2]) & 0xFF) << 8) | (((int) data[i + 3])) & 0xFF), 16) / 164;
             gyroZ = twosComplement((double) (((((int) data[i + 4]) & 0xFF) << 8) | (((int) data[i + 5])) & 0xFF), 16) / 164;
@@ -110,15 +111,28 @@ public class FlexseaDataClass {
             encMotor = twosComplement(((double) (((((int) data[i + 12]) & 0xFF) << 24) | ((((int) data[i + 13]) & 0xFF) << 16) | ((((int) data[i + 14]) & 0xFF) << 8) | ((((int) data[i + 15]) & 0xFF)))), 32) * 0.021973;
             encJoint = twosComplement(((double) (((((int) data[i + 16]) & 0xFF) << 24) | ((((int) data[i + 17]) & 0xFF) << 16) | ((((int) data[i + 18]) & 0xFF) << 8) | ((((int) data[i + 19]) & 0xFF)))), 32) * 0.021973;
             current = twosComplement((double) (((((int) data[i + 20]) & 0xFF) << 8) | (((int) data[i + 21])) & 0xFF), 16);
+
+            /*
+            gyroX   = ((double)((data[i+0 ]<<8)|(data[i+1 ])))/164;
+            gyroY   = ((double)((data[i+2 ]<<8)|(data[i+3 ])))/164;
+            gyroZ   = ((double)((data[i+4 ]<<8)|(data[i+5 ])))/164;
+            accelX  = ((double)((data[i+6 ]<<8)|(data[i+7 ])))/164;
+            accelY  = ((double)((data[i+8 ]<<8)|(data[i+9 ])))/164;
+            accelZ  = ((double)((data[i+10]<<8)|(data[i+11])))/164;
+            encMotor = ((double)((data[i+12]<<24)|(data[i+13]<<16)|(data[i+14]<<8)|(data[i+15])));
+            encJoint = ((double)((data[i+16]<<24)|(data[i+17]<<16)|(data[i+18]<<8)|(data[i+19])));
+            current  = ((double)((data[i+20]<<8)|(data[i+21])))/164;
+            */
+
         }
         else if (offset==1)
         {
-            fx = ((double)((data[i+0 ]<<24)|(data[i+1 ]<<16)|(data[i+2 ]<<8)|(data[i+3 ])))/10;//TODO
-            fy = ((double)((data[i+4 ]<<24)|(data[i+5 ]<<16)|(data[i+6 ]<<8)|(data[i+7 ])))/10;//TODO
-            fz = ((double)((data[i+8 ]<<24)|(data[i+9 ]<<16)|(data[i+10]<<8)|(data[i+11])))/10;//TODO
-            mx = ((double)((data[i+12]<<24)|(data[i+13]<<16)|(data[i+14]<<8)|(data[i+15])))/1000;//TODO
-            my = ((double)((data[i+16]<<24)|(data[i+17]<<16)|(data[i+18]<<8)|(data[i+19])))/1000;//TODO
-            mz = ((double)((data[i+20]<<24)|(data[i+21]<<16)|(data[i+22]<<8)|(data[i+23])))/1000;//TODO
+            fx = twosComplement(((double)((data[i+0 ]<<24)|(data[i+1 ]<<16)|(data[i+2 ]<<8)|(data[i+3 ]))),32)/10;//TODO
+            fy = twosComplement(((double)((data[i+4 ]<<24)|(data[i+5 ]<<16)|(data[i+6 ]<<8)|(data[i+7 ]))),32)/10;//TODO
+            fz = twosComplement(((double)((data[i+8 ]<<24)|(data[i+9 ]<<16)|(data[i+10]<<8)|(data[i+11]))),32)/10;//TODO
+            mx = twosComplement(((double)((data[i+12]<<24)|(data[i+13]<<16)|(data[i+14]<<8)|(data[i+15]))),32)/1000;//TODO
+            my = twosComplement(((double)((data[i+16]<<24)|(data[i+17]<<16)|(data[i+18]<<8)|(data[i+19]))),32)/1000;//TODO
+            mz = twosComplement(((double)((data[i+20]<<24)|(data[i+21]<<16)|(data[i+22]<<8)|(data[i+23]))),32)/1000;//TODO
         }
         return true;
     }

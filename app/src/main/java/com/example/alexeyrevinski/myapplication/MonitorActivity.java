@@ -9,7 +9,10 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -51,10 +54,10 @@ public class MonitorActivity extends AppCompatActivity {
     public TextView timeText;
     public TextView timeText2;
     public TextView timeText3;
-    private ToggleButton motorButton;
-    private ToggleButton directButton;
-
-    //private BluetoothLeService mBluetoothService;
+    private ToggleButton    calibrateButton;
+    private Button          relaxButton;
+    private Switch          logSwitch;
+    private Switch          ctrlSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,36 +86,66 @@ public class MonitorActivity extends AppCompatActivity {
         timeText = (TextView) findViewById(R.id.timeText);
         timeText2 = (TextView) findViewById(R.id.timeText2);
         timeText3 = (TextView) findViewById(R.id.timeText3);
-        motorButton = (ToggleButton) findViewById(R.id.motorButton);
-        directButton = (ToggleButton) findViewById(R.id.directButton);
+        calibrateButton = (ToggleButton) findViewById(R.id.calibrateButton);
+        relaxButton = (Button) findViewById(R.id.relaxButton);
+        logSwitch = (Switch) findViewById(R.id.logSwitch);
+        ctrlSwitch = (Switch) findViewById(R.id.ctrlSwitch);
         command = new RICNUCommander();
 
-        //------------------------------------------------------------------------------------------
-        // BUTTON LISTENERS
-        //------------------------------------------------------------------------------------------
-        // Motor button listener
-        motorButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        relaxButton.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                ctrlSwitch.setChecked(false);
+                sendBroadcast(command.setCommandIntent(RICNUCommander.commands.RELAX));
+            }
+        });
+
+
+        calibrateButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
-                if (motorButton.isChecked()) { // If button is checked
-                    sendBroadcast(command.setCommandIntent(RICNUCommander.commands.MOTOR_START));
+                if (calibrateButton.isChecked()) { // If button is checked
+                    ctrlSwitch.setChecked(false);
+                    sendBroadcast(command.setCommandIntent(RICNUCommander.commands.CALIBRATE));
+
+
+                    ctrlSwitch.setEnabled(false);
+                    logSwitch.setEnabled(false);
+                    relaxButton.setEnabled(false);
+                    calibrateButton.setEnabled(false);
                 }
                 else{
-                    sendBroadcast(command.setCommandIntent(RICNUCommander.commands.MOTOR_STOP));
+                    ctrlSwitch.setEnabled(true);
+                    logSwitch.setEnabled(true);
+                    relaxButton.setEnabled(true);
                 }
             }
         });
-        // Direction button listener
-        directButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+        // Log switch
+        logSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
-                if (directButton.isChecked()) { // If button is checked
-                    sendBroadcast(command.setCommandIntent(RICNUCommander.commands.DIRECTION_BACKWARD));
+                if (logSwitch.isChecked()) { // If button is checked
+                    sendBroadcast(command.setCommandIntent(RICNUCommander.commands.LOGON));
                 }
                 else{
-                    sendBroadcast(command.setCommandIntent(RICNUCommander.commands.DIRECTION_FORWARD));
+                    sendBroadcast(command.setCommandIntent(RICNUCommander.commands.LOGOFF));
+                }
+            }
+        });
+        // Active control switch
+        ctrlSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                if (ctrlSwitch.isChecked()) { // If button is checked
+                    sendBroadcast(command.setCommandIntent(RICNUCommander.commands.START));
+                }
+                else{
+                    sendBroadcast(command.setCommandIntent(RICNUCommander.commands.STOP));
                 }
             }
         });
@@ -138,17 +171,6 @@ public class MonitorActivity extends AppCompatActivity {
         sendBroadcast(intent);
     }
 
-    /*
-    private void broadcastUpdate(final String action, BluetoothDevice device) { // Plus device info
-        final Intent intent = new Intent();
-        intent  .setAction(action)
-                .putExtra("device",device);
-        sendBroadcast(intent);
-    }
-    */
-
-
-
     //==============================================================================================
     // BROADCAST RECEIVER
     //==============================================================================================
@@ -166,22 +188,27 @@ public class MonitorActivity extends AppCompatActivity {
                     timeText.setText(timeString);
                 //}
                 byte [] data = intent.getByteArrayExtra("data");
-                if(receivedData.getData(data)){
-                    dataView_GX.setText(String.format(Locale.US,"%4.2f",receivedData.getGX()));
-                    dataView_GY.setText(String.format(Locale.US,"%4.2f",receivedData.getGY()));
-                    dataView_GZ.setText(String.format(Locale.US,"%4.2f",receivedData.getGZ()));
-                    dataView_AX.setText(String.format(Locale.US,"%4.2f",receivedData.getAX()));
-                    dataView_AY.setText(String.format(Locale.US,"%4.2f",receivedData.getAY()));
-                    dataView_AZ.setText(String.format(Locale.US,"%4.2f",receivedData.getAZ()));
-                    dataView_EM.setText(String.format(Locale.US,"%4.2f",receivedData.getEM()));
-                    dataView_EJ.setText(String.format(Locale.US,"%4.2f",receivedData.getEJ()));
-                    dataView_CU.setText(String.format(Locale.US,"%4.2f",receivedData.getCU()));
-                    dataView_FX.setText(String.format(Locale.US,"%4.2f",receivedData.getFX()));
-                    dataView_FY.setText(String.format(Locale.US,"%4.2f",receivedData.getFY()));
-                    dataView_FZ.setText(String.format(Locale.US,"%4.2f",receivedData.getFZ()));
-                    dataView_MX.setText(String.format(Locale.US,"%4.2f",receivedData.getMX()));
-                    dataView_MY.setText(String.format(Locale.US,"%4.2f",receivedData.getMY()));
-                    dataView_MZ.setText(String.format(Locale.US,"%4.2f",receivedData.getMZ()));
+
+                if(data[0]==3) {
+                    calibrateButton.setEnabled(true);
+                    calibrateButton.setChecked(false);
+                }
+                if (receivedData.getData(data)) {
+                    dataView_GX.setText(String.format(Locale.US, "%4.2f", receivedData.getGX()));
+                    dataView_GY.setText(String.format(Locale.US, "%4.2f", receivedData.getGY()));
+                    dataView_GZ.setText(String.format(Locale.US, "%4.2f", receivedData.getGZ()));
+                    dataView_AX.setText(String.format(Locale.US, "%4.2f", receivedData.getAX()));
+                    dataView_AY.setText(String.format(Locale.US, "%4.2f", receivedData.getAY()));
+                    dataView_AZ.setText(String.format(Locale.US, "%4.2f", receivedData.getAZ()));
+                    dataView_EM.setText(String.format(Locale.US, "%4.2f", receivedData.getEM()));
+                    dataView_EJ.setText(String.format(Locale.US, "%4.2f", receivedData.getEJ()));
+                    dataView_CU.setText(String.format(Locale.US, "%4.2f", receivedData.getCU()));
+                    dataView_FX.setText(String.format(Locale.US, "%4.2f", receivedData.getFX()));
+                    dataView_FY.setText(String.format(Locale.US, "%4.2f", receivedData.getFY()));
+                    dataView_FZ.setText(String.format(Locale.US, "%4.2f", receivedData.getFZ()));
+                    dataView_MX.setText(String.format(Locale.US, "%4.2f", receivedData.getMX()));
+                    dataView_MY.setText(String.format(Locale.US, "%4.2f", receivedData.getMY()));
+                    dataView_MZ.setText(String.format(Locale.US, "%4.2f", receivedData.getMZ()));
                 }
                 end_time_display = System.nanoTime();
                 ns = intent.getLongExtra("start",0);

@@ -144,5 +144,12 @@
     <string name="dis">DISP:</string>
     <string name="not">NOT:</string>
 
+    <string name="logswitch">LOG</string>
+    <string name="ctrlswitch">CONTROL</string>
+
+    <string name="calibrate">CALIBRATE</string>
+    <string name="calibrating">CALIBRATING</string>
+
+    <string name="relax">RELAX</string>
 
 </resources>

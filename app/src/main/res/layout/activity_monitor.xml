@@ -347,6 +347,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/strainData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -460,8 +461,30 @@
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:textSize="@dimen/text_size"/>
 
+            <Switch
+                android:id="@+id/logSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/dataText_MZ"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="L" />
+
+            <Switch
+                android:id="@+id/ctrlSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/logSwitch"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="C" />
+
 
         </RelativeLayout>
+
+
 
     </RelativeLayout>
 
@@ -474,28 +497,27 @@
 
 
 
-    <ToggleButton
-        android:id="@+id/directButton"
-        android:layout_width="@dimen/two_buttons_inline_width"
-        android:layout_height="@dimen/button_height"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="35dp"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:textOff="@string/CW"
-        android:textOn="@string/CCW"
-        android:visibility="visible" />
-
-    <ToggleButton
-        android:id="@+id/motorButton"
+    <Button
+        android:id="@+id/relaxButton"
         android:layout_width="@dimen/two_buttons_inline_width"
         android:layout_height="@dimen/button_height"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="35dp"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:textOff="@string/start_motor"
-        android:textOn="@string/stop_motor"
+        android:text="@string/relax"
+        android:visibility="visible" />
+
+    <ToggleButton
+        android:id="@+id/calibrateButton"
+        android:layout_width="@dimen/two_buttons_inline_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="35dp"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:textOff="@string/calibrate"
+        android:textOn="@string/calibrating"
         android:visibility="visible" />
 
 
